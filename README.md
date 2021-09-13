@@ -1,2 +1,2 @@
-# joomla-xbautosave
+# joomla-xbAutosave
 Autosave editor plugin for Joomla
