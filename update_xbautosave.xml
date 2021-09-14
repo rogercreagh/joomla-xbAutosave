@@ -2,22 +2,22 @@
 <updates>
 	<update>
 		<name>Content - xbAutosave</name>
-		<description>Button to insert html or extension element into content</description>
+		<description>Automatic saving of article whilst editing</description>
 		<element>xbautosave</element>
 		<type>plugin</type>
 		<folder>content</folder>
 		<client>0</client>
-		<version>2.0.0.3</version>
-		<infourl title="Content Editor Autosave v2.0.0.3">
-			https://www.crosborne.co.uk/autosave#changelog
+		<version>3.0.0</version>
+		<infourl title="Content Editor Autosave v3.0.0">
+			https://www.crosborne.co.uk/autosave/changelog
 		</infourl>
 		<downloads>
-			<downloadurl type="full" format="zip">https://www.crosborne.uk/downloads?download=19</downloadurl>
+			<downloadurl type="full" format="zip">https://www.crosborne.uk/downloads?download=3</downloadurl>
 		</downloads>
 		<tags><tag>stable</tag></tags>
 		<maintainer>Roger C-O</maintainer>
 		<maintainerurl>http://crosborne.co.uk/autosave</maintainerurl>
 		<targetplatform name="joomla" version="3.*"/>
-		<php_minimum>5.3.10</php_minimum>
+		<php_minimum>7.4</php_minimum>
 	</update>
 </updates>		

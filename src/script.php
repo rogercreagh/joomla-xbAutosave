@@ -9,6 +9,7 @@
  **/
 // No direct access to this file
 defined('_JEXEC') or die;
+use Joomla\CMS\Factory;
 
 class plgContentXbautosaveInstallerScript
 {
@@ -34,7 +35,7 @@ class plgContentXbautosaveInstallerScript
     function update($parent)
     {
         echo '<p>The xbAutoSave Plugin has been updated to version ' . $parent->getManifest()->version . '</p>';
-        echo '<p>For details see <a href="http://crosborne.co.uk/xbautosave/changelog" target="_blank">
+        echo '<p>For details see <a href="http://crosborne.co.uk/xbAutosave/changelog" target="_blank">
             www.crosborne.co.uk/xbautosave/changelog</a></p>';
     }
     
@@ -47,6 +48,6 @@ class plgContentXbautosaveInstallerScript
             case 'update': $message .= 'updated'; break;
             case 'discover_install': $message .= 'discovered and installed'; break;
         }
-        JFactory::getApplication()->enqueueMessage($message);       
+        Factory::getApplication()->enqueueMessage($message);       
     }
 }
