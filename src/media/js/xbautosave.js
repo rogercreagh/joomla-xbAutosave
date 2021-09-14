@@ -1,6 +1,7 @@
 /**
  * @package xbAutoSave 
- * @version xbautosave.js 2.0.0.0 11th Jan 2019
+ * @filesource media/js/xbautosave.js
+ * @version 3.0.0.a 14th September 2021
  * @author Roger C-O
  * @copyright (C) Roger Creagh-Osborne, 2019
  * @license GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
@@ -14,16 +15,16 @@
 			window.doAutosave(3);
 		}, 3000);
 	})
-	function autosavePopup(msgs, classname) {
-		var popuptpl = '<div class="asave_dark_background"><div class="{classname}">{msg}</div></div>';
+	function autosavePopup(msgs) {
+		var popuptpl = '<div>{msg}</div>';
 		if (!$.isArray(msgs)) {
 			msgs = [msgs];
 		}
 		var div = [], box;
 		for(i=0;i<msgs.length;i+=1) {
+			amsg = msgs[i].replace('<noscript>','').replace('</noscript>','');  
 			box = $(popuptpl
-				.replace('{msg}', msgs[i])
-				.replace('{classname}', classname)
+				.replace('{msg}', amsg)
 			).click(function(){
 				$(this).stop().remove();
 			})
@@ -107,7 +108,8 @@
 		window.doAutosaveOldData = data;
 		autosaveAction(function(resp) {
 			var newdoc = $(resp);
-			autosavePopup(newdoc.find('#system-message-container .alert,#system-message-container .message').html(),newdoc.find('#system-message-container .alert,#system-message-container .message').attr('class'))
+			autosavePopup(newdoc.find('#system-message-container').html()) 
+//			autosavePopup(newdoc.find('#system-message-container .alert,#system-message-container .message').html(),newdoc.find('#system-message-container .alert,#system-message-container .message').attr('class'))
 			if(newdoc.find('#jform_alias').val()) {
 				$('#jform_alias').val(newdoc.find('#jform_alias').val());
 			}
