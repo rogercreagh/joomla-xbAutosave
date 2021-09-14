@@ -30,13 +30,13 @@ class plgcontentXbautosave extends CMSPlugin
 	    if (!$this->app->isClient('administrator')) { // only autosave on admin side
 	        return;
 	    }	    
-        if ($app->input->get('option', '') != 'com_content') { //only autosave for articles (com_content)
+        if ($this->app->input->get('option', '') != 'com_content') { //only autosave for articles (com_content)
             return;
         }
-        if ($app->input->get('layout') != 'edit') { // if we aren't in edit layout then we can't be autosaving
+        if ($this->app->input->get('layout') != 'edit') { // if we aren't in edit layout then we can't be autosaving
             return;
         }
-        $artid = $app->input->get('id');
+        $artid = $this->app->input->get('id');
         if (!$artid) { // if there is no id then the article hasn't been saved yet - show info and don't enable autosave
             $this->app->enqueueMessage(JText::_('PLG_CONTENT_ASAVE_DISABLE_MSG'), 'Warning');
             return;
@@ -61,7 +61,7 @@ class plgcontentXbautosave extends CMSPlugin
                     $msg .= JText::_('PLG_CONTENT_ASAVE_RECOMMEND_MSG2');
                 }
                 $msg .= JText::_('PLG_CONTENT_ASAVE_RECOMMEND_MSG3');
-                $app->enqueueMessage($msg,'Notice');
+                $this->app->enqueueMessage($msg,'Notice');
                 $table = new JTableExtension(Factory::getDbo());
                 $table->load(array('element' => 'xbautosave'));
                 $this->params->set('article_id',$artid);
