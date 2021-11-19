@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="plugin" version="3.0" group="content" method="upgrade">
-	<name>xbAutoSave</name>
+	<name>Content - xbAutoSave</name>
 	<author> Roger C-O</author>
-	<creationDate>14th September 2021</creationDate>
+	<creationDate>18th November 2021</creationDate>
 	<copyright>Copyright (c) Roger Creagh-Osborne, 2018,2019,2020. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
 	<authorEmail>roger@crosborne.co.uk</authorEmail>
 	<authorUrl>www.crosborne.co.uk</authorUrl>
-	<version>3.0.0</version>
+	<version>3.0.0.1</version>
 	<description> <![CDATA[Joomla admin plugin to autosave when editing content. Also allows use of Ctrl+S and Cmd+S (on Mac) to save.<br />Based on CtrlS plugin by Chupurnov Valeriy 2015]]> </description>
 	<files>
 		<filename plugin="xbautosave">xbautosave.php</filename>
