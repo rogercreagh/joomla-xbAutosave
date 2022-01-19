@@ -1,5 +1,7 @@
 # joomla-xbAutosave
-Autosave editor plugin for Joomla 3.9+ and 4.0+ version 3.0.0
+Autosave editor plugin for Joomla 3.9+ ~~and 4.0+~~ version 3.0.0
+
+NB Joomla 4 is not working currently - it was working with j4.0.0, but seem to be broken now (j4.0.5+)
 
 Enables automatic saving of articles (com_content) whilst editing. Save interval configurable from 30sec (minimum) to as long as you like in seconds (keep it less than your session timeout so as not to loose work when you get distracted and forget to save)
 
@@ -20,7 +22,8 @@ https://crosborne.uk/xbautosave/dl and click the download button
 
 To use "Install from URL" in Joomla try
 
-https://www.crosborne.uk/downloads?download=3
+https://www.crosborne.uk/downloads?download=3 for v2 (old) 
+or https://crosborne.uk/downloads?download=19 for v3
 
 The Joomla update system is used so you should get notified when a new version is released.
 
