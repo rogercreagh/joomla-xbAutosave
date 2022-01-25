@@ -41,6 +41,7 @@ class plgcontentXbautosave extends CMSPlugin
             $this->app->enqueueMessage(JText::_('PLG_CONTENT_ASAVE_DISABLE_MSG'), 'Warning');
             return;
         }
+        JHtml::_('jquery.framework');
         $doc = Factory::getDocument();
         $doc->addScript(Uri::root().'/media/plg_content_xbautosave/js/xbautosave.js');
 //        $editor = JFactory::getEditor();
