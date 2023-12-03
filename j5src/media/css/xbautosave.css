@@ -1,0 +1,33 @@
+/**
+ * @package xbAutosave 
+ * @filesource media/css/xbautosave.css
+ * @version 4.0.0.0 18th November 2023
+ * @author Roger C-O, Pascal Leconte
+ * @copyright (C) Roger Creagh-Osborne, 2023
+ * @license GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
+ * Based on plg_content_ctrls by Chupurnov Valeriy (C) 2015 Chupurnov Valeriy 
+**/
+.asave_popup_box{
+	position: fixed;
+	top:5px;
+	right:5px;
+	width:360px;
+	z-index:2035;
+}
+.asave_popup_box>div{
+	padding:15px 15px;
+	margin-bottom:10px;
+	position: relative;
+}
+.asave_popup_box>div>a{
+	margin-left:5px;
+	font-weight:700;
+	color:#fff000;
+	position:absolute;
+	right:10px;
+	top:50%;
+	height:15px;
+	margin-top:-7px;
+	display: inline-block;
+	cursor:pointer;
+}

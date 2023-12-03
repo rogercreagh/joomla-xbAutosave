@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" version="4.0" group="content" method="upgrade">
+	<name>Content - xbAutoSave</name>
+	<author> Roger C-O</author>
+	<creationDate>18th November 2023</creationDate>
+	<copyright>Copyright (c) Roger Creagh-Osborne, 2018,2019,2020,2021,2022,2023. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
+	<authorEmail>roger@crosborne.co.uk</authorEmail>
+	<authorUrl>www.crosborne.co.uk</authorUrl>
+	<version>4.0.0</version>
+	<description> <![CDATA[Joomla admin plugin to autosave when editing content. Also allows use of Ctrl+S and Cmd+S (on Mac) to save.<br />Based on CtrlS plugin by Chupurnov Valeriy 2015]]> </description>
+	<namespace path="src">Crosborne\Plugin\Content\Xbautosave</namespace>
+	
+	<files>
+		<folder plugin="xbautosave">services</folder>
+		<folder>src</folder>
+		<filename>index.html</filename>
+	</files>
+	<languages folder="language">
+		<language tag="en-GB">languages/plg_content_xbautosave.ini</language>
+		<language tag="en-GB">languages/plg_content_xbautosave.sys.ini</language>
+	</languages>
+	<media folder="media" destination="plg_content_xbautosave">
+		<folder>css</folder>
+		<folder>js</folder>
+		<filename>index.html</filename>
+	</media>
+	<scriptfile>script.php</scriptfile>
+	<config>
+		<fields name="params">
+			<fieldset name="basic" addfieldprefix="Crosborne\Plugin\Content\Xbautosave\Field">
+				<field name="version" type="version"  margintop="-3em"  extension="xbautosave" />
+				<field name="verinfo" type="note" 
+					description="PLG_CONTENT_ASAVE_VER_LBL" />
+				<field name="note1" type="note" class="alert" close="true" 
+					label="PLG_CONTENT_ASAVE_PARAM_LBL" description="PLG_CONTENT_ASAVE_PARAM_DESC" />
+				<field
+                    name="use_autosave"
+                    type="radio"
+                    label="PLG_CONTENT_ASAVE_USE_AUTOSAVE_LBL"
+                    description="PLG_CONTENT_ASAVE_USE_AUTOSAVE_DESC"
+                    default="0"
+                    class="btn-group">
+	                    <option value="0">JNO</option>
+	                    <option value="1">JYES</option>
+                </field>
+				<field 
+					showon='use_autosave:1'
+					name="autosave_period" 
+					type="number" 
+					default="62" 
+					min="30"
+					label="PLG_CONTENT_ASAVE_PERIOD_LBL" 
+					description="PLG_CONTENT_ASAVE_PERIOD_DESC" 
+				/>
+				<field
+                    name="use_keysave"
+                    type="radio"
+                    label="PLG_CONTENT_ASAVE_USE_KEYSAVE_LBL"
+                    description="PLG_CONTENT_ASAVE_USE_KEYSAVE_DESC"
+                    default="0"
+                    class="btn-group">
+	                    <option value="0">JNO</option>
+	                    <option value="1">JYES</option>
+                </field>
+                <field name="article_id" type="hidden" default="0" />
+			</fieldset>
+		</fields>
+	</config>
+	<updateservers>
+		<server type="extension" priority="1"  name="Autosave Updates">
+		 	http://www.crosborne.co.uk/jupdates/update_xbautosave.xml
+		</server>
+	</updateservers>
+</extension>
