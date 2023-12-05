@@ -1,7 +1,7 @@
 <?php
 /**
  * @package xbAutoSave for Joomla! 4.x/5.x
- * @filesource xbautosave.php
+ * @filesource Extension/xbautosave.php
  * @version 4.0.0. 18th November 2023
  * @author Roger C-O, Pascal Leconte
  * @copyright (C) Roger Creagh-Osborne, 2023
