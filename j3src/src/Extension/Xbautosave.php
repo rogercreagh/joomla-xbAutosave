@@ -1,14 +1,14 @@
 <?php
 /**
- * @package xbAutoSave
+ * @package xbAutoSave for Joomla! 4.x/5.x
  * @filesource xbautosave.php
- * @version 3.0.0.a 14th September 2021
+ * @version 3.1.0. 18th November 2023
  * @author Roger C-O
- * @copyright (C) Roger Creagh-Osborne, 2019
+ * @copyright (C) Roger Creagh-Osborne, 2023
  * @license GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  * @desc Based on plg_content_ctrls by Chupurnov Valeriy (C) 2015 Chupurnov Valeriy 
 **/
-
+namespace Crosborne\Plugin\Content\Xbautosave\Extension;
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Form\Form;
@@ -16,8 +16,9 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Table\Extension AS TableExtension;
 
-class plgcontentXbautosave extends CMSPlugin 
+class Xbautosave extends CMSPlugin 
 {
     protected $autoloadLanguage = true;
     protected $app;
@@ -38,32 +39,29 @@ class plgcontentXbautosave extends CMSPlugin
         }
         $artid = $this->app->input->get('id');
         if (!$artid) { // if there is no id then the article hasn't been saved yet - show info and don't enable autosave
-            $this->app->enqueueMessage(JText::_('PLG_CONTENT_ASAVE_DISABLE_MSG'), 'Warning');
+            $this->app->enqueueMessage(Text::_('PLG_CONTENT_ASAVE_DISABLE_MSG'), 'Warning');
             return;
         }
-        JHtml::_('jquery.framework');
         $doc = Factory::getDocument();
-        $doc->addScript(Uri::root().'/media/plg_content_xbautosave/js/xbautosave.js');
-//        $editor = JFactory::getEditor();
-//        $doc->addScriptDeclaration('window.updateEditorAutosave = function() {
-//                if (document.getElementById("jform_articletext")) {
-//				    document.getElementById("jform_articletext").value = '.$editor->getContent("jform_articletext").';
-//                }
-//			};');
-        if (($this->getParam('use_autosave')) || ($this->getParam('use_keysave')) ) {
+        Factory::getApplication()->getDocument()->getWebAssetManager()
+			->registerAndUseStyle('xbautosave','plg_content_xbautosave/xbautosave.css')
+            ->registerAndUseScript('xbautosave','plg_content_xbautosave/xbautosave.js',[],['type' => 'module'],[]);
+		
+		$period = '0'; // initialize $period
+		if ($this->getParam('use_autosave')) {
             $period = intval($this->getParam('autosave_period',30));
             if ($this->getParam('article_id')!=$artid) { //is this a different article to last time we saved?
                 //confirm Autosave enabled and generate a warning message about multiple versions building up
                 $msg=''; 
                 if ($this->getParam('use_autosave')) {
-                    $msg = JText::sprintf('PLG_CONTENT_ASAVE_RECOMMEND_MSG1',$period).' ';
+                    $msg = Text::sprintf('PLG_CONTENT_ASAVE_RECOMMEND_MSG1',$period).' ';
                 }
                 if ($this->getParam('use_keysave')) {
-                    $msg .= JText::_('PLG_CONTENT_ASAVE_RECOMMEND_MSG2');
+                    $msg .= Text::_('PLG_CONTENT_ASAVE_RECOMMEND_MSG2');
                 }
-                $msg .= JText::_('PLG_CONTENT_ASAVE_RECOMMEND_MSG3');
+                $msg .= Text::_('PLG_CONTENT_ASAVE_RECOMMEND_MSG3');
                 $this->app->enqueueMessage($msg,'Notice');
-                $table = new JTableExtension(Factory::getDbo());
+                $table = new TableExtension(Factory::getDbo());
                 $table->load(array('element' => 'xbautosave'));
                 $this->params->set('article_id',$artid);
                 $table->set('params', $this->params->toString());
@@ -76,10 +74,8 @@ class plgcontentXbautosave extends CMSPlugin
                     ');
         } //endif use_autosave
         $keySaveEnabled = $this->getParam('use_keysave',0);
-        $doc->addScriptDeclaration('
-                window.chkkey = '.$keySaveEnabled.';
-            ');
-        $doc->addStyleSheet(Uri::root().'/media/plg_content_xbautosave/css/xbautosave.css');
+		$doc->addScriptOptions('plg_content_xbautosave', 
+			array('chkkey' => $keySaveEnabled,'period' => $period));        
         return;
 	}
 }
